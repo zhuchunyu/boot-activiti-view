@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.activiti.org/test">
+    <process id="one-process" isExecutable="true">
+        <startEvent id="start"></startEvent>
+        <userTask id="listener1" name="ÇÿÇÕÄÄõÞ" activiti:assignee="fred">
+            <extensionElements>
+                <activiti:taskListener event="create"
+                                       class="com.jerryl.activiti.listener.TestTaskListener"></activiti:taskListener>
+            </extensionElements>
+        </userTask>
+        <endEvent id="end"></endEvent>
+        <sequenceFlow id="sequenceFlow-261a05f0-e59c-44ae-b4b1-9a76bd156874" sourceRef="start"
+                      targetRef="listener1"></sequenceFlow>
+        <sequenceFlow id="sequenceFlow-22a63dba-f2de-412e-bc52-0253430b6ec1" sourceRef="listener1"
+                      targetRef="end"></sequenceFlow>
+    </process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_one-process">
+        <bpmndi:BPMNPlane bpmnElement="one-process" id="BPMNPlane_one-process">
+            <bpmndi:BPMNShape bpmnElement="listener1" id="BPMNShape_listener1">
+                <omgdc:Bounds height="60.0" width="100.0" x="80.0" y="0.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+                <omgdc:Bounds height="30.0" width="30.0" x="0.0" y="15.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+                <omgdc:Bounds height="30.0" width="30.0" x="230.0" y="15.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="sequenceFlow-22a63dba-f2de-412e-bc52-0253430b6ec1"
+                             id="BPMNEdge_sequenceFlow-22a63dba-f2de-412e-bc52-0253430b6ec1">
+                <omgdi:waypoint x="180.0" y="30.0"></omgdi:waypoint>
+                <omgdi:waypoint x="192.0" y="30.0"></omgdi:waypoint>
+                <omgdi:waypoint x="192.0" y="30.000000000000004"></omgdi:waypoint>
+                <omgdi:waypoint x="230.0" y="30.000000000000004"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="sequenceFlow-261a05f0-e59c-44ae-b4b1-9a76bd156874"
+                             id="BPMNEdge_sequenceFlow-261a05f0-e59c-44ae-b4b1-9a76bd156874">
+                <omgdi:waypoint x="30.0" y="30.0"></omgdi:waypoint>
+                <omgdi:waypoint x="42.0" y="30.0"></omgdi:waypoint>
+                <omgdi:waypoint x="42.0" y="30.000000000000007"></omgdi:waypoint>
+                <omgdi:waypoint x="80.0" y="30.000000000000007"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</definitions>
