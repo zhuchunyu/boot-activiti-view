@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * @author yuz
+ */
 @SpringBootApplication
 @ComponentScan({"com.jerryl","org.activiti"})
 public class SpringBootWithActivitiApplication {
