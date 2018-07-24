@@ -10,7 +10,7 @@ public class ProcessNode {
     private Long nextNode;
     private List<String> roles;
     private String conditionType;
-    private List<Map<String, Long>> conditions;
+    private List<ConditiionRoute> conditions;
     private List<Long> events;
     private List<Long> services;
 
@@ -62,11 +62,11 @@ public class ProcessNode {
         this.conditionType = conditionType;
     }
 
-    public List<Map<String, Long>> getConditions() {
+    public List<ConditiionRoute> getConditions() {
         return conditions;
     }
 
-    public void setConditions(List<Map<String, Long>> conditions) {
+    public void setConditions(List<ConditiionRoute> conditions) {
         this.conditions = conditions;
     }
 
