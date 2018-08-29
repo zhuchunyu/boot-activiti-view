@@ -15,6 +15,9 @@ public class TestTaskListener implements TaskListener {
         System.out.println(delegateTask);
         System.out.println(delegateTask.getAssignee());
         System.out.println(delegateTask.getCandidates());
+        delegateTask.getExecution().getCurrentActivityId();
+
+
         System.out.println("finished");
     }
 }

@@ -12,10 +12,14 @@
  */
 package org.activiti.rest.editor.model;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import org.activiti.bpmn.converter.BpmnXMLConverter;
+import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
+import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Model;
@@ -84,6 +88,21 @@ public class ModelSaveRestResource implements ModelDataJsonConstants {
             final byte[] result = outStream.toByteArray();
             repositoryService.addModelEditorSourceExtra(model.getId(), result);
             outStream.close();
+
+            String filename;
+            JsonNode editorNode = new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelId));
+            BpmnJsonConverter jsonConverter = new BpmnJsonConverter();
+            BpmnModel modelXml = jsonConverter.convertToBpmnModel(editorNode);
+            filename = modelXml.getMainProcess().getId() + ".bpmn20.xml";
+            byte[] bpmnBytes = new BpmnXMLConverter().convertToXML(modelXml, "utf-8");
+
+            FileOutputStream xmlOut = new FileOutputStream("c:/process/" + filename);
+            xmlOut.write(bpmnBytes);
+            xmlOut.close();
+
+            FileOutputStream pngOut = new FileOutputStream("c:/process/" + modelXml.getMainProcess().getId() + ".png");
+            pngOut.write(result);
+            pngOut.close();
 
         } catch (Exception e) {
             LOGGER.error("Error saving model", e);
